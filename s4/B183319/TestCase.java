@@ -41,6 +41,32 @@ public class TestCase {
 	    freq = myObject.frequency();
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+
+	    //TARGET is not set
+	    myObject = new s4.B183319.Frequencer();
+	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
+	    freq = myObject.frequency();
+	    System.out.println("TARGET is not set: "+freq);
+
+	    //TARGET's length is zero
+	    myObject = new s4.B183319.Frequencer();
+	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
+	    myObject.setTarget("".getBytes());
+	    freq = myObject.frequency();
+	    System.out.println("TARGET's length is zero: "+freq);
+
+	    //SPACE is not set
+	    myObject = new s4.B183319.Frequencer();
+	    myObject.setTarget("H".getBytes());
+	    freq = myObject.frequency();
+	    System.out.println("SPACE is not set: "+freq);
+
+	    //SPACE's length is zero
+	    myObject = new s4.B183319.Frequencer();
+	    myObject.setSpace("".getBytes());
+	    myObject.setTarget("H".getBytes());
+	    freq = myObject.frequency();
+	    System.out.println("SPACE's length is zero: "+freq);
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
@@ -64,11 +90,36 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
+
+	    //TARGET is not set
+	    myObject = new s4.B183319.InformationEstimator();
+	    myObject.setSpace("3210321001230123".getBytes());
+	    value = myObject.estimation();
+	    System.out.println("TARGET is not set: "+value);
+
+	    //TARGET's length is zero
+	    myObject = new s4.B183319.InformationEstimator();
+	    myObject.setSpace("3210321001230123".getBytes());
+	    myObject.setTarget("".getBytes());
+	    value = myObject.estimation();
+	    System.out.println("TARGET's lenght is zero: "+value);
+
+	    //true value is infinite
+	    myObject = new s4.B183319.InformationEstimator();
+	    myObject.setSpace("".getBytes());
+	    myObject.setTarget("0".getBytes());
+	    value = myObject.estimation();
+	    System.out.println("true valu is infinite: "+value);
+
+	    //SPACE is not set
+	    myObject = new s4.B183319.InformationEstimator();
+	    myObject.setTarget("0".getBytes());
+	    value = myObject.estimation();
+	    System.out.println("SPACE is not set: "+value);
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
 	}
 
     }
-}	    
-	    
+}
