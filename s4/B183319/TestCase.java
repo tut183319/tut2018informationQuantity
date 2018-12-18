@@ -57,7 +57,8 @@ public class TestCase {
 	    else isOK = "NG";
 	    System.out.println("TARGET is not set: "+isOK+"("+freq+")");
 	}catch(Exception e){
-	    System.out.println("TARGET is not set: "+e);
+	    System.out.println("TARGET is not set: ");
+	    e.printStackTrace();
 	}
 
 	try{
@@ -73,7 +74,8 @@ public class TestCase {
 	    else isOK = "NG";
 	    System.out.println("TARGET's length is zero: "+isOK+"("+freq+")");
 	}catch(Exception e){
-	    System.out.println("TARGET's length is zero: "+e);
+	    System.out.println("TARGET's length is zero: ");
+	    e.printStackTrace();
 	}
 
 	try{
@@ -104,7 +106,8 @@ public class TestCase {
 	    else isOK = "NG";
 	    System.out.println("SPACE's length is zero: "+isOK+"("+freq+")");
 	}catch(Exception e) {
-	    System.out.println("SPACE's length is zero: "+e);
+	    System.out.println("SPACE's length is zero: ");
+	    e.printStackTrace();
 	}
 
 	try {
@@ -125,35 +128,75 @@ public class TestCase {
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);
-
+	}catch(Exception e){
+	    System.out.println("Exception occurred: STOP");
+	}
+	
+	try{
 	    //TARGET is not set
+	    InformationEstimatorInterface myObject;
+	    double value;
+	    String isOK;
 	    myObject = new s4.B183319.InformationEstimator();
 	    myObject.setSpace("3210321001230123".getBytes());
 	    value = myObject.estimation();
-	    System.out.println("TARGET is not set: "+value);
+	    if(value == 0.0)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("TARGET is not set: "+isOK+"("+value+")");
+	}catch(Exception e){
+	    System.out.println("TARGET is not set: ");
+	    e.printStackTrace();
+	}
 
+	try{
 	    //TARGET's length is zero
+	    InformationEstimatorInterface myObject;
+	    double value;
+	    String isOK;
 	    myObject = new s4.B183319.InformationEstimator();
 	    myObject.setSpace("3210321001230123".getBytes());
 	    myObject.setTarget("".getBytes());
 	    value = myObject.estimation();
-	    System.out.println("TARGET's lenght is zero: "+value);
+	    if(value == 0.0)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("TARGET's length is zero: "+isOK+"("+value+")");
+	}catch(Exception e){
+	    System.out.println("TARGET's length is zero: ");
+	    e.printStackTrace();
+	}
 
+	try{
 	    //true value is infinite
+	    InformationEstimatorInterface myObject;
+	    double value;
+	    String isOK;
 	    myObject = new s4.B183319.InformationEstimator();
 	    myObject.setSpace("".getBytes());
 	    myObject.setTarget("0".getBytes());
 	    value = myObject.estimation();
-	    System.out.println("true valu is infinite: "+value);
-
+	    if(value == Double.MAX_VALUE)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("true value is infinite: "+isOK+"("+value+")");
+	}catch(Exception e){
+	    System.out.println("true value is infinite: ");
+	    e.printStackTrace();
+	}
+	
+	try{
 	    //SPACE is not set
+	    InformationEstimatorInterface myObject;
+	    double value;
+	    String isOK;
 	    myObject = new s4.B183319.InformationEstimator();
 	    myObject.setTarget("0".getBytes());
 	    value = myObject.estimation();
-	    System.out.println("SPACE is not set: "+value);
+	    if(value == Double.MAX_VALUE)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("SPACE is not set: "+isOK+"("+value+")");
 	}
 	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
+	    System.out.println("SPACE is not set: ");
+	    e.printStackTrace();
 	}
 
     }
