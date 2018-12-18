@@ -41,35 +41,70 @@ public class TestCase {
 	    freq = myObject.frequency();
 	    System.out.print("\"H\" in \"Hi Ho Hi Ho\" appears "+freq+" times. ");
 	    if(4 == freq) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+	}catch(Exception e){
+	    System.out.println("Exception occurred: STOP");
+	}
 
+	try{
 	    //TARGET is not set
+	    FrequencerInterface myObject;
+	    int freq;
+	    String isOK;
 	    myObject = new s4.B183319.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    freq = myObject.frequency();
-	    System.out.println("TARGET is not set: "+freq);
+	    if(freq == -1)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("TARGET is not set: "+isOK+"("+freq+")");
+	}catch(Exception e){
+	    System.out.println("TARGET is not set: "+e);
+	}
 
+	try{
 	    //TARGET's length is zero
+	    FrequencerInterface myObject;
+	    int freq;
+	    String isOK;
 	    myObject = new s4.B183319.Frequencer();
 	    myObject.setSpace("Hi Ho Hi Ho".getBytes());
 	    myObject.setTarget("".getBytes());
 	    freq = myObject.frequency();
-	    System.out.println("TARGET's length is zero: "+freq);
+	    if(freq == -1)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("TARGET's length is zero: "+isOK+"("+freq+")");
+	}catch(Exception e){
+	    System.out.println("TARGET's length is zero: "+e);
+	}
 
+	try{
 	    //SPACE is not set
+	    FrequencerInterface myObject;
+	    int freq;
+	    String isOK;
 	    myObject = new s4.B183319.Frequencer();
 	    myObject.setTarget("H".getBytes());
 	    freq = myObject.frequency();
-	    System.out.println("SPACE is not set: "+freq);
+	    if(freq == 0)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("SPACE is not set: "+isOK+"("+freq+")");
+	}catch(Exception e){
+	    System.out.println("SPACE is not set: "+e);
+	}
 
+	try{
 	    //SPACE's length is zero
+	    FrequencerInterface myObject;
+	    int freq;
+	    String isOK;
 	    myObject = new s4.B183319.Frequencer();
 	    myObject.setSpace("".getBytes());
 	    myObject.setTarget("H".getBytes());
 	    freq = myObject.frequency();
-	    System.out.println("SPACE's length is zero: "+freq);
-	}
-	catch(Exception e) {
-	    System.out.println("Exception occurred: STOP");
+	    if(freq == 0)isOK = "OK";
+	    else isOK = "NG";
+	    System.out.println("SPACE's length is zero: "+isOK+"("+freq+")");
+	}catch(Exception e) {
+	    System.out.println("SPACE's length is zero: "+e);
 	}
 
 	try {
