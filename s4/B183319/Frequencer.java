@@ -132,7 +132,34 @@ public class Frequencer implements FrequencerInterface{
 	//
 	// ****  Please write code here... ***
 	//
-	return 0; // This line should be modified.
+	byte[] suffix = new byte[mySpace.length-i];
+	byte[] target = new byte[end-j];
+	for(int k=0; k<mySpace.length-i;k++){
+		suffix[k] = mySpace[k+i];
+	//	System.out.write(suffix[k]);
+	}
+	//System.out.println();
+
+	for(int k=j; k < end; k++){
+		target[k-j] = myTarget[k];
+//		System.out.write(target[k-j]);
+	}
+//	System.out.println();
+
+	if(target.length <= suffix.length){
+		for(int k=0; k<target.length; k++){
+			if(suffix[k] > target[k]) return 1;
+			else if(suffix[k] < target[k]) return -1;
+		}
+		return 0;
+	}else{
+		for(int k=0; k<suffix.length; k++){
+			if(suffix[k] > target[k]) return 1;
+			else if(suffix[k] < target[k]) return -1;
+		}
+		return -1;
+	}
+	 // This line should be modified.
     }
 
     private int subByteStartIndex(int start, int end) {
@@ -145,9 +172,13 @@ public class Frequencer implements FrequencerInterface{
 	//
 	int result;
 	for(int i=0; i<suffixArray.length; i++){
-		if(targetCompare(i,start,end) == 0) return i;
+		result = targetCompare(suffixArray[i],0,myTarget.length);
+		if(result == 0) return i;
+		if(result == 1){
+		       	break;
+		}
 	}
-	return start+1; // This line should be modified.
+	return 0; // This line should be modified.
     }
 
     private int subByteEndIndex(int start, int end) {
@@ -157,7 +188,13 @@ public class Frequencer implements FrequencerInterface{
 	// For "Ho ", it will return 7 for "Hi Ho Hi Ho".
 	//
 	// ****  Please write code here... ***
-	return suffixArray.length; // This line should be modified.
+	int result;
+	for(int i=suffixArray.length-1; i >= 0; i--){
+		result = targetCompare(suffixArray[i],0,myTarget.length);
+		if(result == 0) return i+1;
+		if(result == -1) break;
+	}
+	return 0; // This line should be modified.
     }
 
     public int subByteFrequency(int start, int end) {
@@ -173,8 +210,9 @@ public class Frequencer implements FrequencerInterface{
 	}
 	*/
 	int first = subByteStartIndex(start, end);
-	int last1 = subByteEndIndex(start, end);
-	return last1 - first;
+	int last = subByteEndIndex(start, end);
+	System.out.printf("%d,%d\n",first,last);
+	return last - first;
     }
 
     public void setTarget(byte [] target) { 
@@ -207,7 +245,7 @@ public class Frequencer implements FrequencerInterface{
 	       A:o Hi Ho
 	    */
 
-	    frequencerObject.setTarget("H".getBytes());
+	    frequencerObject.setTarget("aa".getBytes());
 	    //
 	    // ****  Please write code to check subByteStartIndex, and subByteEndIndex
 	    //
