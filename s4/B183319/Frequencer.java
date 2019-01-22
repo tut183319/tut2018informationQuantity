@@ -211,7 +211,6 @@ public class Frequencer implements FrequencerInterface{
 	*/
 	int first = subByteStartIndex(start, end);
 	int last = subByteEndIndex(start, end);
-	System.out.printf("%d,%d\n",first,last);
 	return last - first;
     }
 
@@ -245,10 +244,12 @@ public class Frequencer implements FrequencerInterface{
 	       A:o Hi Ho
 	    */
 
-	    frequencerObject.setTarget("aa".getBytes());
-	    //
-	    // ****  Please write code to check subByteStartIndex, and subByteEndIndex
-	    //
+	    frequencerObject.setTarget("H".getBytes());
+	    
+	    int first = frequencerObject.subByteStartIndex(0, frequencerObject.myTarget.length);
+	    int last = frequencerObject.subByteEndIndex(0, frequencerObject.myTarget.length);
+	    System.out.println("start index:"+first+"\nend index:"+last);
+	    
 	    int result = frequencerObject.frequency();
 	    System.out.print("Freq = "+ result+" ");
 	    if(4 == result) { System.out.println("OK"); } else {System.out.println("WRONG"); }
