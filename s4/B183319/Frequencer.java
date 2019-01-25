@@ -73,24 +73,34 @@ public class Frequencer implements FrequencerInterface{
 	j_length = suffix_j.length;
 
 	if(i_length > j_length){
-	  for(int k = 0; k < j_length; k++){
-	    if(suffix_i[k] < suffix_j[k]){
-	      return -1;
-	    }else if(suffix_i[k] > suffix_j[k]){
-	      return 1;
-	    } 
+		for(int k = 0; k < j_length; k++){
+		  if(suffix_i[k] < suffix_j[k]){
+			return -1;
+		  }else if(suffix_i[k] > suffix_j[k]){
+			return 1;
+		  }
+		}
+		return 1;
+	  }else if(i_length < j_length){
+		for(int k = 0; k < i_length; k++){
+		  if(suffix_i[k] < suffix_j[k]){
+			return -1;
+		  }else if(suffix_i[k] > suffix_j[k]){
+			return 1;
+		  }
+		}
+		return -1;
+	  }else{
+		  for(int k = 0; k < i_length; k++){
+			  if(suffix_i[k] < suffix_j[k]){
+				  return -1;
+			  }else if(suffix_i[k] > suffix_j[k]){
+				  return 1;
+			  }
+		  }
+		  return 0;
 	  }
-	}else{
-	  for(int k = 0; k < i_length; k++){
-	    if(suffix_i[k] < suffix_j[k]){
-	      return -1;
-	    }else if(suffix_i[k] > suffix_j[k]){
-	      return 1;
-	    }
 	  }
-	}
-	return 1;
-    }
 
     public void setSpace(byte []space) {
 	int temp;
