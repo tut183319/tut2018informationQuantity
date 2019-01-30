@@ -47,6 +47,8 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	// System.out.println("np="+np+" length="+myTarget.length);
 	double value = Double.MAX_VALUE; // value = mininimum of each "value1".
 
+	double[] strageIQ = new double[1<<(myTarget.length+1)];
+
 	for(int p=0; p<np; p++) { // There are 2^(n-1) kinds of partitions.
 	    // binary representation of p forms partition.
 	    // for partition {"ab" "cde" "fg"}
@@ -71,8 +73,18 @@ public class InformationEstimator implements InformationEstimatorInterface{
 		    end++;
 		}
 		// System.out.print("("+start+","+end+")");
+//		for(int i = start; i<end; i++)System.out.write(myTarget[i]);
+//		System.out.println();
 		myFrequencer.setTarget(subBytes(myTarget, start, end));
-		value1 = value1 + iq(myFrequencer.frequency());
+//		value1 = value1 + iq(myFrequencer.frequency());
+		if(strageIQ[(1<<start)+(1<<end)] != 0.0){
+		    value1 += strageIQ[(1<<start)+(1<<end)];
+//		    System.out.println();
+		}else{
+//		    System.out.println("    call");
+		    strageIQ[(1<<start)+(1<<end)] = iq(myFrequencer.frequency());
+		    value1 += strageIQ[(1<<start)+(1<<end)];
+		}
 		start = end;
 	    }
 	    // System.out.println(" "+ value1);
@@ -86,6 +98,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
     public static void main(String[] args) {
 	InformationEstimator myObject;
 	double value;
+	long startTime = System.currentTimeMillis();
 	myObject = new InformationEstimator();
 	myObject.setSpace("3210321001230123".getBytes());
 	myObject.setTarget("0".getBytes());
@@ -100,6 +113,8 @@ public class InformationEstimator implements InformationEstimatorInterface{
 	myObject.setTarget("00".getBytes());
 	value = myObject.estimation();
 	System.out.println(">00 "+value);
+	long endTime = System.currentTimeMillis();
+	System.out.println((endTime-startTime)+"ms");
     }
 }
 				  
