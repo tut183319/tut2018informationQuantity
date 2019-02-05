@@ -182,7 +182,8 @@ public class Frequencer implements FrequencerInterface{
 	//
 	int result;
 	for(int i=0; i<suffixArray.length; i++){
-		result = targetCompare(suffixArray[i],0,myTarget.length);
+		result = targetCompare(suffixArray[i],start,end);
+		//result = targetCompare(suffixArray[i],0,myTarget.length);
 		if(result == 0) return i;
 		if(result == 1){
 		       	break;
@@ -200,7 +201,8 @@ public class Frequencer implements FrequencerInterface{
 	// ****  Please write code here... ***
 	int result;
 	for(int i=suffixArray.length-1; i >= 0; i--){
-		result = targetCompare(suffixArray[i],0,myTarget.length);
+		//result = targetCompare(suffixArray[i],0,myTarget.length);
+		result = targetCompare(suffixArray[i],start,end);
 		if(result == 0) return i+1;
 		if(result == -1) break;
 	}
@@ -221,7 +223,7 @@ public class Frequencer implements FrequencerInterface{
 	*/
 	int first = subByteStartIndex(start, end);
 	int last = subByteEndIndex(start, end);
-	return last - first;
+	return (last - first);
     }
 
     public void setTarget(byte [] target) { 

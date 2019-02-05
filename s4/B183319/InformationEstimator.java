@@ -41,6 +41,8 @@ public class InformationEstimator implements InformationEstimatorInterface{
   }
 
   public double estimation(){
+    //if(
+
     //boolean [] partition = new boolean[myTarget.length+1];
     //int np;
     //np = 1<<(myTarget.length-1);
@@ -115,7 +117,6 @@ public class InformationEstimator implements InformationEstimatorInterface{
   public static void main(String[] args) {
     InformationEstimator myObject;
     double value;
-    long start = System.currentTimeMillis();
     myObject = new InformationEstimator();
     myObject.setSpace("3210321001230123".getBytes());
     myObject.setTarget("0".getBytes());
@@ -131,6 +132,5 @@ public class InformationEstimator implements InformationEstimatorInterface{
     value = myObject.estimation();
     System.out.println(">00 "+value);
     long end = System.currentTimeMillis();
-    System.out.println((end - start) + "ms");
   }
 }
